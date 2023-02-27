@@ -1,0 +1,37 @@
+create table user(
+	userName varchar(100) not null primary key,
+	password varchar(100) not null,
+	phoneNo varchar(100) not null,
+	email varchar(100) not null,
+	role varchar(100) not null
+)
+
+
+create table orders(
+	o_Id int auto_increment primary key,
+	orderId varchar(100) not null,
+	userName varchar(100) not null,
+	foreign key(userName) references users(userName),
+	orderDate date,
+	dlvDate date,
+	status varchar(100) not null,
+	totalCost varchar(100) not null
+)
+
+insert into orders(userName,orderDate,dlvDate,status,totalCost) values(?,?,?,?,?)
+
+
+create table orderitems(
+	itemId int auto_increment primary key,
+	o_Id int,
+	foreign key(o_Id) references orders(o_Id),
+	itemName varchar(100) not null,
+	itemPrice varchar(100) not null,
+	itemQuantity varchar(100) not null
+)
+
+insert into orderitems(orderId,itemName,itemPrice,itemQuantity) values(?,?,?,?)
+
+select o.orderId,o.orderDate,o.dlvDate,o.status,oi.itemId,oi.itemName,oi.itemPrice,oi.itemQuantity from orders o ,orderitems oi where o.orderId = oi.orderId and o.userName=?
+
+select orderId,itemId,itemName,itemPrice,itemQuantity from orderitems where orderId=?
