@@ -18,7 +18,7 @@ create table orders(
 	totalCost varchar(100) not null
 )
 
-insert into orders(userName,orderDate,dlvDate,status,totalCost) values(?,?,?,?,?)
+insert into orders(orderId,userName,orderDate,dlvDate,status,totalCost) values(?,?,?,?,?,?)
 
 
 create table orderitems(
