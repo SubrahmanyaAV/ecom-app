@@ -32,7 +32,9 @@
 	<br>
 	<br>
 	<a href="OrderItemsServlet">View Orders</a>
-
+	
+	<br><br>
+	<p>Continue shopping</p><a href="index.jsp">Home</a>
 
 
 </body>

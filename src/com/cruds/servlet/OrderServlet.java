@@ -73,7 +73,7 @@ public class OrderServlet extends HttpServlet {
 		if(OrderService.order(cart,o) != null)
 		{
 			Order Id=dao.getOrderId(userName);
-			session.setAttribute("MESSAGE","Your Order is placed ");
+			session.setAttribute("MESSAGE","Thank you for shopping ");
 			session.removeAttribute("CART");
 			RequestDispatcher rs=request.getRequestDispatcher("WEB-INF/views/order.jsp");
 			rs.forward(request, response);

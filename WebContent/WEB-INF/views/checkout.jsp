@@ -33,6 +33,8 @@
 		</thead>
 		<tbody>
 			<%
+			if(list != null)
+			{
 				for(Product p : list){
 			%>
 				<tr>
@@ -42,13 +44,14 @@
 				</tr>
 			<%
 				}
+			}	
 			%>	
 		</tbody>
 	</table>
 	
 	<p> Total  <%=total %></p>
 	
-		<a href="OrderServlet"><button>Buy Now</button> </a>
+		<a href="OrderServlet"><button>Confirm Order</button> </a>
 
 
 </body>

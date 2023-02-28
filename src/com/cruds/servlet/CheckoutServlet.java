@@ -10,18 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.cruds.entity.User;
-import com.cruds.service.UserService;
 
 /**
- * Servlet implementation class UserServlet
+ * Servlet implementation class CheckoutServlet
  */
-public class UserServlet extends HttpServlet {
+public class CheckoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserServlet() {
+    public CheckoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,8 +29,22 @@ public class UserServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/user.jsp");
+		
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("USER");
+		RequestDispatcher rd = null;
+		if (user !=null)
+		{
+			rd = request.getRequestDispatcher("WEB-INF/views/checkout.jsp");
+		}
+		else
+		{
+			request.setAttribute("ERROR", "Invalid User Credentials");
+			rd = request.getRequestDispatcher("WEB-INF/views/login.jsp");
+		}
+
 		rd.forward(request, response);
+	
 	}
 
 	/**
@@ -39,24 +52,7 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session=request.getSession();
-		
-		String userName = "";
-		String password = "";
-		String phoneNo = "";
-		String email = "";
-		String role = "";
-		
-		userName = (String) request.getParameter("userName");
-		password = (String) request.getParameter("pwd");
-		phoneNo = (String) request.getParameter("phoneNo");
-		email = (String) request.getParameter("email");
-		role = (String) request.getParameter("role");
-		
-		UserService.addUser(new User(userName, password, phoneNo, email,"User"));
-		
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/views/login.jsp");
-		rd.forward(request, response);
+		doGet(request, response);
 	}
 
 }
